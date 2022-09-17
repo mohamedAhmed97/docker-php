@@ -12,6 +12,7 @@ pipeline{
                 def bashCmd="bash ./server-cmd.sh ${IMAGE_NAME}"
                 def ec2Instance="ec2-user@3.133.105.71"
                 sshagent(credentials: ['ec2-docker-server']) {
+                  sh "scp ./server-cmd.sh ${ec2Instance}:/home/ec2-user" 
                   sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} ${bashCmd}"
                 }
             }
