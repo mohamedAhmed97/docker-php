@@ -9,7 +9,7 @@ pipeline{
                 script{
                      echo "========deploy to ec2========"
                 //sshagent
-                def bashCmd="bash server-cmd.sh ${IMAGE_NAME}"
+                def bashCmd="bash ./server-cmd.sh ${IMAGE_NAME}"
                 def ec2Instance="ec2-user@3.133.105.71"
                 sshagent(credentials: ['ec2-docker-server']) {
                   sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} ${bashCmd}"
